@@ -1,7 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const { errors } = require('celebrate');
-const cors = require('cors');
+const mycors = require('./middlewares/cors');
 const userRouter = require('./routes/users');
 const cardRouter = require('./routes/cards');
 const signinRouter = require('./routes/sign-in');
@@ -15,14 +15,7 @@ const { PORT = 3000 } = process.env;
 
 const app = express();
 
-const corsOptions = {
-  origin: 'https://test-front.students.nomoredomainsicu.ru',
-  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-  allowedHeaders: 'Origin, X-Requested-With, Content-Type, Accept, Authorization',
-  credentials: true,
-};
-
-app.use(cors(corsOptions));
+app.use(mycors);
 
 app.use(express.json());
 app.use(requestLogger);
