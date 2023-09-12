@@ -1,0 +1,10 @@
+.popup__container_image {
+    max-width: 75vw;
+    display: grid;
+    grid-template-rows: repeat(3, minmax(min-content, max-content));
+    grid-template-columns: fit-content(75vh);
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0);
+    border-radius: 0;
+    padding: 0;
+}

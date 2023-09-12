@@ -1,0 +1,19 @@
+.profile__persona {
+    max-width: 60%;
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+@media (max-width: 950px) {
+    .profile__persona {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 725px) {
+    .profile__persona {
+        flex-direction: column;
+        gap: 0;
+    }
+}

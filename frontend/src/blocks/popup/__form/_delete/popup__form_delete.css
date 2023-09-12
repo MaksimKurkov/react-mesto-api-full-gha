@@ -1,0 +1,10 @@
+.popup__form_delete {
+    margin-top: 38px;
+    padding-top: 0;
+}
+
+@media (max-width: 725px) {
+    .popup__form_delete {
+        padding-top: 75px;
+    }
+}
