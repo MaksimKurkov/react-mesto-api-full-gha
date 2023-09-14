@@ -6,27 +6,20 @@ const BadRequestError = require('../errors/bad-request-error');
 const NotFoundError = require('../errors/not-found-error');
 const ConflictError = require('../errors/conflict-error');
 
+module.exports.signOut = (req, res) => res.clearCookie('jwt').send({ message: 'Куки удалены' });
+
 module.exports.login = (req, res, next) => {
   const { email, password } = req.body;
   const { NODE_ENV, JWT_SECRET = 'secret-key', JWT_DEV = 'dev-key' } = process.env;
   return userModel.findUserByCredentials(email, password)
     .then((user) => {
-      const token = jwt.sign(
-        { _id: user._id },
-        NODE_ENV === 'production' ? JWT_SECRET : JWT_DEV,
-        { expiresIn: '7d' },
-      );
-      res.cookie('jwt', token, {
-        maxAge: 3600000 * 24 * 7,
-        httpOnly: true,
-      });
+      const token = jwt.sign({ _id: user._id }, NODE_ENV === 'production' ? JWT_SECRET : JWT_DEV, { expiresIn: '7d' });
+      res.cookie('jwt', token, { maxAge: 3600000 * 24 * 7, httpOnly: true }).send({ data: user.toJSON() });
     })
     .catch((err) => {
       next(err);
     });
 };
-
-module.exports.signOut = (req, res) => res.clearCookie('jwt').send({ message: 'Куки удалены' });
 
 module.exports.getUsers = (req, res, next) => userModel.find({})
   .then((user) => res.send(user))

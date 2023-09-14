@@ -14,11 +14,3 @@
 
 `npm run start` — запускает сервер   
 `npm run dev` — запускает сервер с hot-reload
-
-### В проекте используются переменные окружения (.env)
-
-```
-NODE_ENV=production
-JWT_SECRET=1829
-JWT_DEV=jwt
-```
