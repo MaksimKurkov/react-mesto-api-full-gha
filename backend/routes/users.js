@@ -8,12 +8,10 @@ const {
   updateUserData,
   updateUserAvatar,
   getMe,
-  signOut,
 } = require('../controllers/users');
 
 router.get('/users', getUsers);
 router.get('/users/me', getMe);
-router.get('/signout', signOut);
 
 router.get('/users/:userId', celebrate({
   params: Joi.object().keys({

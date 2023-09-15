@@ -2,6 +2,8 @@ const DEFAULT_ALLOWED_METHODS = 'GET,HEAD,PUT,PATCH,POST,DELETE';
 
 const allowedCors = [
   'http://localhost:3001',
+  'http://kurkov.students.nomoredomainsicu.ru',
+  'https://kurkov.students.nomoredomainsicu.ru',
 ];
 
 // eslint-disable-next-line consistent-return
@@ -21,5 +23,5 @@ module.exports = (req, res, next) => {
     return res.end();
   }
 
-  next(); // пропускаем запрос дальше
+  next();
 };

@@ -1,17 +1,12 @@
 const router = require('express').Router();
 const { celebrate, Joi } = require('celebrate');
-const { httpRegex } = require('../utils/regex');
-
 const {
-  getCards,
-  createCard,
-  deleteCard,
-  addCardLike,
-  deleteCardLike,
+  getCards, createCard, deleteCard, addCardLike, deleteCardLike,
 } = require('../controllers/cards');
 
-router.get('/cards', getCards);
+const { httpRegex } = require('../utils/regex');
 
+router.get('/cards', getCards);
 router.post('/cards', celebrate({
   body: Joi.object().keys({
     name: Joi.string().required().min(2).max(30),
