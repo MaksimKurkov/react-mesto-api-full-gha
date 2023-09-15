@@ -9,7 +9,7 @@
 
 ## Ссылки на проект
 
-IP-адрес 158.160.80.213
+IP 158.160.80.213
 
 Frontend https://kurkov.students.nomoredomainsicu.ru
 
