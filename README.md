@@ -11,6 +11,6 @@
 
 IP-адрес 158.160.80.213
 
-Frontend http://kurkov.students.nomoredomainsicu.ru/sign-in
+Frontend https://kurkov.students.nomoredomainsicu.ru
 
 Backend https://api.mest0.students.nomoredomainsicu.ru
