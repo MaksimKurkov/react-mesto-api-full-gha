@@ -15,7 +15,7 @@ import Login from './Login';
 import Register from './Register';
 import auth from '../utils/Аuthorization'; 
 import InfoTooltip from './InfoTooltip';
-
+import Token from '../utils/Token';
 
 function App() {
     const [email, setEmail] = useState(null);
@@ -35,6 +35,19 @@ function App() {
     const [idCardForDelete, setIdCardForDelete] = useState(null);
     const navigate = useNavigate();
 
+    useEffect(() => {
+        const token = Token.getToken();
+        if (token) {
+            auth
+                .checkToken(token)
+                .then((data) => {
+                    setEmail(data.email);
+                    setLoggedIn(true);
+                    navigate("/", {replace: true})
+                })
+                .catch((err) => showInfoTooltip(true, err));
+        }
+      }, [navigate]);
 
     useEffect(() => {
         if (loggedIn) {
@@ -55,7 +68,7 @@ function App() {
     }, [loggedIn]);
 
     function handleSignOut() {
-        localStorage.removeItem('jwt');
+        Token.removeToken();
         setEmail(null);
         setLoggedIn(false);
         navigate("/sign-in", {replace: true})
@@ -82,9 +95,9 @@ function App() {
       function handleLogin(formData) {
         auth
             .authorization(formData)
-            .then((data) => {
-                if (data && data.token) {
-                    localStorage.setItem('jwt', data.token);
+            .then(({ token }) => {
+                if (token) {
+                    Token.saveToken(token);
                     setLoggedIn(true);
                     setEmail(formData.email);
                     navigate("/", {replace: true})
@@ -189,29 +202,6 @@ function App() {
             console.log('handleAddPlaceSubmit', err);
         });
     }
-
-    useEffect(() => {
-        tokenCheck();
-    }, []);
-
-    const tokenCheck = () => {
-        if (localStorage.getItem('jwt')) {
-            const jwt = localStorage.getItem('jwt');
-            if (jwt) {
-                auth.checkToken(jwt)
-                    .then((res) => {
-                        if (res) {
-                            setLoggedIn(true);
-                            setEmail(res.data.email);
-                            navigate('/', { replace: true });
-                        }
-                    })
-                    .catch((error) => {
-                        console.log(`Ошибка проверки токена - ${error}`);
-                    });
-            }
-        }
-    };
 
   return (
     <div className="app">

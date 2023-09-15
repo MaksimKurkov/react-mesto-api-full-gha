@@ -6,15 +6,15 @@ const { httpRegex, emailRegex } = require('../utils/regex');
 const userSchema = new mongoose.Schema({
   name: {
     type: String,
+    default: 'Жак-Ив Кусто',
     minlength: [2, 'Минимальная длина поля 2 символа'],
     maxlength: [30, 'Максимальная длина поля 30 символов'],
-    default: 'Жак-Ив Кусто',
   },
   about: {
     type: String,
+    default: 'Исследователь',
     minlength: [2, 'Минимальная длина поля 2 символа'],
     maxlength: [30, 'Максимальная длина поля 30 символов'],
-    default: 'Исследователь',
   },
   avatar: {
     type: String,
@@ -23,23 +23,23 @@ const userSchema = new mongoose.Schema({
       validator(url) {
         return httpRegex.test(url);
       },
-      message: 'Некорректный URL',
+      message: 'Не верный URL',
     },
   },
   email: {
     type: String,
-    required: true,
-    unique: true,
+    required: [true, 'Поле должно быть заполнено'],
     validate: {
       validator(email) {
         return emailRegex.test(email);
       },
-      message: 'Некорректный email',
+      message: 'Введите верный email',
     },
+    unique: true,
   },
   password: {
     type: String,
-    required: true,
+    required: [true, 'Поле должно быть заполнено'],
     select: false,
   },
 }, { versionKey: false });
