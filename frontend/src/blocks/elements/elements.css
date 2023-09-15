@@ -1,0 +1,11 @@
+.elements {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 282px);
+    box-sizing: border-box;
+    justify-items: stretch;
+    align-items: stretch;
+    justify-content: center;
+    align-content: space-between;
+    grid-gap: 20px 17px;
+}
