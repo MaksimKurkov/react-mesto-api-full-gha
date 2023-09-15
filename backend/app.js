@@ -2,6 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const { errors } = require('celebrate');
+const cors = require('cors');
 const userRouter = require('./routes/users');
 const cardRouter = require('./routes/cards');
 const signinRouter = require('./routes/sign-in');
@@ -10,14 +11,21 @@ const auth = require('./middlewares/auth');
 const errorHandler = require('./middlewares/error-middlewares');
 const NotFoundError = require('./errors/not-found-error');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
-const cors = require('./middlewares/cors');
 
 const { PORT = 3000 } = process.env;
 const { MONGO_URL = 'mongodb://localhost:27017/mestodb' } = process.env;
 
 const app = express();
 
-app.use(cors);
+const corsOptions = {
+  origin: 'https://kurkov.students.nomoredomainsicu.ru',
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  allowedHeaders: 'Origin, X-Requested-With, Content-Type, Accept, Authorization',
+  credentials: true,
+};
+
+app.use(cors(corsOptions));
+
 app.use(express.json());
 app.use(requestLogger);
 
