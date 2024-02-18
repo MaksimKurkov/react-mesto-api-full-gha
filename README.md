@@ -14,7 +14,7 @@
 8.Nginx
 
 ### Установка и запуск приложения в локальном репозитории
-1. `git clone https://github.com/endjoyer/react-mesto-api-full-gha` - клонировать репозиторий (HTTPS) на свое устройство
+1. `git clone https://github.com/MaksimKurkov/react-mesto-api-full-gha` - клонировать репозиторий (HTTPS) на свое устройство
 2. `npm i` - установить зависимости (отдельно - в папке `frontend` и `backend`)
 3. `npm run dev` - запустить приложение в режиме разработчика в папке `backend`
 4. `npm run start` - запустить приложение в режиме разработчика в папке `frontend`
