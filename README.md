@@ -4,14 +4,14 @@
 
 Технологический стек проекта:
 
-1.React
-2.React Router
-3.JavaScript
-4.CSS
-5.HTML
-6.Node
-7.MongoDB
-8.Nginx
+1. React
+2. React Router
+3. JavaScript
+4. CSS
+5. HTML
+6. Node
+7. MongoDB
+8. Nginx
 
 ### Установка и запуск приложения в локальном репозитории
 1. `git clone https://github.com/MaksimKurkov/react-mesto-api-full-gha` - клонировать репозиторий (HTTPS) на свое устройство
